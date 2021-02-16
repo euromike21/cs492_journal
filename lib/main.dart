@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'screens/alpha.dart';
 import 'screens/beta.dart';
+import 'widgets/journal_entry_form.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,14 +20,17 @@ class App extends StatelessWidget {
   static final routes = {
     Alpha.routeName: (context) => Alpha(),
     Beta.routeName: (context) => Beta(),
+    //include welcome screen
   };
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Journal',
-      theme: ThemeData.dark(),
-      routes: routes,
-    );
+        title: 'Journal',
+        theme: ThemeData.dark(),
+        //routes: routes,
+        home: Scaffold(
+            appBar: AppBar(title: Text('Adaptive Layouts')),
+            body: JournalEntryForm()));
   }
 }
