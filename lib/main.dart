@@ -30,7 +30,15 @@ class App extends StatelessWidget {
         theme: ThemeData.dark(),
         //routes: routes,
         home: Scaffold(
-            appBar: AppBar(title: Text('Adaptive Layouts')),
+            appBar: AppBar(
+              title: Text('Adaptive Layouts'),
+              // actions: <Widget>[
+              //   IconButton(icon: Icon(Icons.brightness_6), onPressed: null)
+              // ],
+            ),
+            endDrawer: Drawer(
+              child: ListView(),
+            ),
             body: JournalEntryForm()));
   }
 }

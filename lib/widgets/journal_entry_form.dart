@@ -26,7 +26,9 @@ class JournalEntry {
   });
 }
 
+// ignore: must_be_immutable
 class JournalEntryForm extends StatelessWidget {
+  final myController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   final journalEntryFields = JournalEntryFields();
@@ -40,7 +42,7 @@ class JournalEntryForm extends StatelessWidget {
         key: formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             TextFormField(
                 autofocus: true,
                 decoration: InputDecoration(
@@ -56,6 +58,42 @@ class JournalEntryForm extends StatelessWidget {
                     return null;
                   }
                 }),
+            SizedBox(height: 20),
+            TextFormField(
+                autofocus: true,
+                decoration: InputDecoration(
+                    labelText: 'Body', border: OutlineInputBorder()),
+                onSaved: (value) {
+                  //store value in some object
+                  journalEntryFields.body = value;
+                },
+                maxLines: 3,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter a description';
+                  } else {
+                    return null;
+                  }
+                }),
+            SizedBox(height: 20),
+            TextFormField(
+                controller: myController,
+                autofocus: true,
+                decoration: InputDecoration(
+                    labelText: 'Rating', border: OutlineInputBorder()),
+                onSaved: (value) {
+                  //store value in some object
+                  int num = int.parse(value);
+                  journalEntryFields.rating = num;
+                },
+                maxLines: 1,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter a rating';
+                  } else {
+                    return null;
+                  }
+                }),
             SizedBox(height: 10),
             RaisedButton(
               onPressed: () {
@@ -67,6 +105,8 @@ class JournalEntryForm extends StatelessWidget {
                 //journalEntry.title = 'keep it real';
                 //  assert(journalEntry.title != 'ok');
                 print(journalEntryFields.title);
+                print(journalEntryFields.body);
+                print(journalEntryFields.rating);
                 //  }
               },
               child: Text('Save Entry'),
