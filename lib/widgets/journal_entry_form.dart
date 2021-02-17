@@ -95,22 +95,33 @@ class JournalEntryForm extends StatelessWidget {
                   }
                 }),
             SizedBox(height: 10),
-            RaisedButton(
-              onPressed: () {
-                // if (formKey.currentState.validate()) {
-                formKey.currentState.save();
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel'),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    // if (formKey.currentState.validate()) {
+                    formKey.currentState.save();
 
-                //Database.of(context).saveJournalEntry(journalEntryFields);
-                //Navigator.of(context).pop();
-                //journalEntry.title = 'keep it real';
-                //  assert(journalEntry.title != 'ok');
-                print(journalEntryFields.title);
-                print(journalEntryFields.body);
-                print(journalEntryFields.rating);
-                //  }
-              },
-              child: Text('Save Entry'),
-            )
+                    //Database.of(context).saveJournalEntry(journalEntryFields);
+                    //Navigator.of(context).pop();
+                    //journalEntry.title = 'keep it real';
+                    //  assert(journalEntry.title != 'ok');
+                    print(journalEntryFields.title);
+                    print(journalEntryFields.body);
+                    print(journalEntryFields.rating);
+                    //  }
+                  },
+                  child: Text('Save Entry'),
+                ),
+              ],
+            ),
           ],
         ),
       ),
