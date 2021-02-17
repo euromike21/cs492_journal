@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
-import '../widgets/journal_scaffold.dart';
 
-class JournalEntriesScreen extends StatelessWidget {
-  static const routeKey = 'journal_entries';
-  final items = List<Map>.generate(1000, (index) {
-    return {
-      'title': 'journal entry $index',
-      'subtitle': 'Subtitle text  for $index',
-    };
-  });
-
+class JournalEntries extends StatelessWidget {
+  static const routeName = '/';
   @override
   Widget build(BuildContext context) {
-    // return JournalScaffold(
-    //     title: 'Journal Entries',
-    //     child: ListView.builder(itemBuilder: context,index){
-    //     return ListTile(
-    //       leading: FlutterLogo(),
-    //       trailing: Icons(Icons.more_horiz),
-    //       title: Text('Journal Entry ${items[index][index]}'),
-    //       subtitle: Text('Example ${items[index]['subtitle']}')
-    //    );
-    //     })
-    //     );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Journal Entries'),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(8),
+        children: <Widget>[
+          Container(
+            height: 50,
+            color: Colors.amber[600],
+            child: const Center(child: Text('Entry A')),
+          ),
+          Container(
+            height: 50,
+            color: Colors.amber[500],
+            child: const Center(child: Text('Entry B')),
+          ),
+          Container(
+            height: 50,
+            color: Colors.amber[100],
+            child: const Center(child: Text('Entry C')),
+          ),
+        ],
+      ),
+    );
   }
 }

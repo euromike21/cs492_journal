@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbols.dart';
+import 'package:intl/intl.dart';
 
 class JournalEntryFields {
   String title;
@@ -24,6 +26,15 @@ class JournalEntry {
     this.rating = 0,
     this.date,
   });
+
+  //genid method to genererate unique id
+  //dateTime
+
+  void dateGen() {
+    //var now = new DateTime.now();
+    //print('$now');
+    print(new DateFormat.yMMMMEEEEd().format(new DateTime.now()));
+  }
 }
 
 // ignore: must_be_immutable
@@ -41,7 +52,8 @@ class JournalEntryForm extends StatelessWidget {
       child: Form(
         key: formKey,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             TextFormField(
                 autofocus: true,
@@ -97,6 +109,7 @@ class JournalEntryForm extends StatelessWidget {
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RaisedButton(
                   onPressed: () {
@@ -116,6 +129,7 @@ class JournalEntryForm extends StatelessWidget {
                     print(journalEntryFields.title);
                     print(journalEntryFields.body);
                     print(journalEntryFields.rating);
+                    journalEntry.dateGen();
                     //  }
                   },
                   child: Text('Save Entry'),
