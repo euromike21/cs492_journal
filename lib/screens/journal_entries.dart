@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:journal/screens/welcome.dart';
 
 class JournalEntries extends StatelessWidget {
-  static const routeName = '/';
+  //static const routeName = '/';
+  static const routeName = 'journal_entries';
   static const routeKey = 'journal_entries';
 
   final items = List<Map>.generate(10000, (i) {
@@ -26,7 +28,7 @@ class JournalEntries extends StatelessWidget {
           subtitle: Text('Example subtitle ${items[index]['subtitle']}'),
           onTap: () {
             //TODO: update this with route to actual data
-            Navigator.of(context).pushNamed(routeName);
+            Navigator.of(context).pushNamed(routeKey);
           },
         );
       }),

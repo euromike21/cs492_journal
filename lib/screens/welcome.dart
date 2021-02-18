@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:journal/widgets/journal_scaffold.dart';
-import 'beta.dart';
 
 class Welcome extends StatelessWidget {
   static const routeName = '/';

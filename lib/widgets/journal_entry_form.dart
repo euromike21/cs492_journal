@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbols.dart';
 import 'package:intl/intl.dart';
 import 'package:journal/widgets/dropdown_rating_form_field.dart';
+import 'package:journal/screens/journal_entries.dart';
+import 'package:journal/widgets/journal_entries_scaffold.dart';
 
 class JournalEntryFields {
   String title;
@@ -45,6 +47,10 @@ class JournalEntryForm extends StatelessWidget {
 
   final journalEntryFields = JournalEntryFields();
   var journalEntry = JournalEntry();
+
+  static final EntriesRoute = {
+    JournalEntries.routeName: (context) => JournalEntries(),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -97,24 +103,6 @@ class JournalEntryForm extends StatelessWidget {
                 journalEntryFields.rating = value;
               },
             ),
-            // TextFormField(
-            //     controller: myController,
-            //     autofocus: true,
-            //     decoration: InputDecoration(
-            //         labelText: 'Rating', border: OutlineInputBorder()),
-            //     onSaved: (value) {
-            //       //store value in some object
-            //       int num = int.parse(value);
-            //       journalEntryFields.rating = num;
-            //     },
-            //     maxLines: 1,
-            //     validator: (value) {
-            //       if (value.isEmpty) {
-            //         return 'Please enter a rating';
-            //       } else {
-            //         return null;
-            //       }
-            //     }),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -126,23 +114,8 @@ class JournalEntryForm extends StatelessWidget {
                   },
                   child: Text('Cancel'),
                 ),
-                RaisedButton(
-                  onPressed: () {
-                    // if (formKey.currentState.validate()) {
-                    formKey.currentState.save();
-
-                    //Database.of(context).saveJournalEntry(journalEntryFields);
-                    //Navigator.of(context).pop();
-                    //journalEntry.title = 'keep it real';
-                    //  assert(journalEntry.title != 'ok');
-                    print(journalEntryFields.title);
-                    print(journalEntryFields.body);
-                    print(journalEntryFields.rating);
-                    //journalEntry.dateGen();
-                    //  }
-                  },
-                  child: Text('Save Entry'),
-                ),
+                entriesButton(
+                    context, formKey, journalEntryFields, journalEntry),
               ],
             ),
           ],
@@ -150,4 +123,24 @@ class JournalEntryForm extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget entriesButton(BuildContext context, GlobalKey<FormState> formKey,
+    JournalEntryFields journalEntryFields, JournalEntry journalEntry) {
+  return RaisedButton(
+      onPressed: () {
+        //TODO: Validate
+        formKey.currentState.save();
+        print(journalEntryFields.title);
+        print(journalEntryFields.body);
+        print(journalEntryFields.rating);
+
+        journalEntry.dateGen();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => JournalEntriesScaffold()),
+        );
+      },
+      child: Text(
+          'Save Entry')); // This trailing comma makes auto-formatting nicer for build methods.
 }
