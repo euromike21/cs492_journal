@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbols.dart';
 import 'package:intl/intl.dart';
+import 'package:journal/widgets/dropdown_rating_form_field.dart';
 
 class JournalEntryFields {
   String title;
@@ -33,7 +34,7 @@ class JournalEntry {
   void dateGen() {
     //var now = new DateTime.now();
     //print('$now');
-    print(new DateFormat.yMMMMEEEEd().format(new DateTime.now()));
+    print(new DateFormat.MMMMEEEEd().format(new DateTime.now()));
   }
 }
 
@@ -88,28 +89,36 @@ class JournalEntryForm extends StatelessWidget {
                   }
                 }),
             SizedBox(height: 20),
-            TextFormField(
-                controller: myController,
-                autofocus: true,
-                decoration: InputDecoration(
-                    labelText: 'Rating', border: OutlineInputBorder()),
-                onSaved: (value) {
-                  //store value in some object
-                  int num = int.parse(value);
-                  journalEntryFields.rating = num;
-                },
-                maxLines: 1,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter a rating';
-                  } else {
-                    return null;
-                  }
-                }),
+            DropdownRatingFormField(
+              maxRating: 4,
+              onSaved: (value) {
+                //       //store value in some object
+                //       int num = int.parse(value);
+                journalEntryFields.rating = value;
+              },
+            ),
+            // TextFormField(
+            //     controller: myController,
+            //     autofocus: true,
+            //     decoration: InputDecoration(
+            //         labelText: 'Rating', border: OutlineInputBorder()),
+            //     onSaved: (value) {
+            //       //store value in some object
+            //       int num = int.parse(value);
+            //       journalEntryFields.rating = num;
+            //     },
+            //     maxLines: 1,
+            //     validator: (value) {
+            //       if (value.isEmpty) {
+            //         return 'Please enter a rating';
+            //       } else {
+            //         return null;
+            //       }
+            //     }),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              //crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RaisedButton(
                   onPressed: () {
@@ -129,7 +138,7 @@ class JournalEntryForm extends StatelessWidget {
                     print(journalEntryFields.title);
                     print(journalEntryFields.body);
                     print(journalEntryFields.rating);
-                    journalEntry.dateGen();
+                    //journalEntry.dateGen();
                     //  }
                   },
                   child: Text('Save Entry'),

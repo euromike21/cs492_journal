@@ -3,9 +3,10 @@
 -Step 1: make a button in the right of the app bar with a toggle-able config option in a drawer to change the theme from light to dark. (shred preferences concept)
 -Step 2: figure out how to savet the state of the preference
 -(first use should be light theme)
+-see tutorial: https://itnext.io/app-theming-in-flutter-dark-mode-light-mode-27d9adf3cee
 
-*-Step 3: Journal - Create onnject with id (int), title (str), body (str), rating (int), date (DateTime).Use of an onject to get data is demonstrated in last prof video in form expl.
--Step 4: Display all saved entried in a list view of title and date. 
+x-Step 3: Journal - Create onnject with id (int), title (str), body (str), rating (int), date (DateTime).Use of an onject to get data is demonstrated in last prof video in form expl.
+-Step 4: Display all saved entries in a list view of title and date. 
 -Step 5: Display all parts of the object when list is tapped.
 *-Step 6: Put back button on details page to return to list view.
 -Step 7: make master-detail layout when device has +800 (or appropriate) horiz space.

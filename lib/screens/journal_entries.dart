@@ -1,33 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class JournalEntries extends StatelessWidget {
   static const routeName = '/';
+  static const routeKey = 'journal_entries';
+
+  final items = List<Map>.generate(10000, (i) {
+    return {
+      'title': 'Journal Entry$i',
+      'subtitle': 'Subtitle text for $i',
+    };
+  });
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Journal Entries'),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(8),
-        children: <Widget>[
-          Container(
-            height: 50,
-            color: Colors.amber[600],
-            child: const Center(child: Text('Entry A')),
-          ),
-          Container(
-            height: 50,
-            color: Colors.amber[500],
-            child: const Center(child: Text('Entry B')),
-          ),
-          Container(
-            height: 50,
-            color: Colors.amber[100],
-            child: const Center(child: Text('Entry C')),
-          ),
-        ],
-      ),
+    return Material(
+      //body: ListView.builder(itemBuilder: (context, index) {
+      child: ListView.builder(itemBuilder: (context, index) {
+        //use these when possible
+        print('Creating item $index');
+        return ListTile(
+          leading: FlutterLogo(),
+          trailing: Icon(Icons.more_horiz),
+          title: Text('Journal Entry ${items[index]['title']}'),
+          subtitle: Text('Example subtitle ${items[index]['subtitle']}'),
+          onTap: () {
+            //TODO: update this with route to actual data
+            Navigator.of(context).pushNamed(routeName);
+          },
+        );
+      }),
+
+      // ListView(
+      //   padding: const EdgeInsets.all(8),
+      //   children: <Widget>[
+      //     //use these when possible
+      //     ListTile(
+      //       leading: FlutterLogo(),
+      //       trailing: Icon(Icons.more_horiz),
+      //       title: Text('Journal Entry N'),
+      //       subtitle: Text('Example subtitle'),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

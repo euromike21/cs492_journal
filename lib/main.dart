@@ -33,8 +33,11 @@ class App extends StatelessWidget {
       title: 'Journal',
       theme: ThemeData.light(),
       //if list length is > 0 then load welcomroute
+
       routes: welcomeRoute,
+
       //else load journalentries route
+
       //routes: listRoute,
     );
 
