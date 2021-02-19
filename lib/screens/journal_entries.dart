@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:journal/screens/welcome.dart';
 
 class JournalEntries extends StatelessWidget {
-  //static const routeName = '/';
-  static const routeName = 'journal_entries';
+  static const routeName = '/';
+  //static const routeName = 'journal_entries';
   static const routeKey = 'journal_entries';
 
   final items = List<Map>.generate(10000, (i) {

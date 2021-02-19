@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:journal/widgets/journal_entries_scaffold.dart';
 //import 'package:journal/widgets/journal_scaffold.dart';
 import 'screens/welcome.dart';
 import 'screens/journal_entries.dart';
@@ -24,7 +25,13 @@ class App extends StatelessWidget {
   };
 
   static final listRoute = {
+    //JournalEntries.routeName: (context) => JournalEntries(),
     JournalEntries.routeName: (context) => JournalEntries(),
+  };
+
+  static final listScaffoldRoute = {
+    //JournalEntries.routeName: (context) => JournalEntries(),
+    JournalEntriesScaffold.routeName: (context) => JournalEntriesScaffold(),
   };
 
   @override
@@ -34,11 +41,11 @@ class App extends StatelessWidget {
       theme: ThemeData.light(),
       //if list length is > 0 then load welcomroute
 
-      routes: welcomeRoute,
+      //routes: welcomeRoute,
 
       //else load journalentries route
 
-      //routes: listRoute,
+      routes: listScaffoldRoute,
     );
 
     //home: JournalScaffold());
