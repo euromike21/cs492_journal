@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:journal/screens/welcome.dart';
+import 'package:journal/models/entryMaker.dart';
+
+class JEntry {
+  final String title, body;
+  JEntry({this.title = "Unnamed ENtry", this.body = "No Description"});
+}
 
 class JournalEntries extends StatelessWidget {
   static const routeName = '/';
   //static const routeName = 'journal_entries';
   static const routeKey = 'journal_entries';
+
+  var jList = EntryMaker().createList();
 
   final items = List<Map>.generate(10000, (i) {
     return {
@@ -18,20 +26,22 @@ class JournalEntries extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       //body: ListView.builder(itemBuilder: (context, index) {
-      child: ListView.builder(itemBuilder: (context, index) {
-        //use these when possible
-        print('Creating item $index');
-        return ListTile(
-          leading: FlutterLogo(),
-          trailing: Icon(Icons.more_horiz),
-          title: Text('Journal Entry ${items[index]['title']}'),
-          subtitle: Text('Example subtitle ${items[index]['subtitle']}'),
-          onTap: () {
-            //TODO: update this with route to actual data
-            Navigator.of(context).pushNamed(routeKey);
-          },
-        );
-      }),
+      child: ListView.builder(
+          itemCount: jList.length,
+          itemBuilder: (context, index) {
+            //use these when possible
+            print('Creating item $index');
+            return ListTile(
+              leading: FlutterLogo(),
+              trailing: Icon(Icons.more_horiz),
+              title: Text('${jList[index].title}'),
+              subtitle: Text('${jList[index].date}'),
+              onTap: () {
+                //TODO: update this with route to actual data
+                Navigator.of(context).pushNamed(routeKey);
+              },
+            );
+          }),
 
       // ListView(
       //   padding: const EdgeInsets.all(8),

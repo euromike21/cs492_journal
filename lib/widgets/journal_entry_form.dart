@@ -15,14 +15,14 @@ class JournalEntryFields {
   }
 }
 
-class JournalEntry {
+class JournalEntryDB {
   int id;
   String title;
   String body;
   int rating;
   DateTime date;
 
-  JournalEntry({
+  JournalEntryDB({
     this.id,
     this.title = '',
     this.body = '',
@@ -46,7 +46,7 @@ class JournalEntryForm extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
 
   final journalEntryFields = JournalEntryFields();
-  var journalEntry = JournalEntry();
+  var journalEntry = JournalEntryDB();
 
   static final EntriesRoute = {
     JournalEntries.routeName: (context) => JournalEntries(),
@@ -126,7 +126,7 @@ class JournalEntryForm extends StatelessWidget {
 }
 
 Widget entriesButton(BuildContext context, GlobalKey<FormState> formKey,
-    JournalEntryFields journalEntryFields, JournalEntry journalEntry) {
+    JournalEntryFields journalEntryFields, JournalEntryDB journalEntry) {
   return RaisedButton(
       onPressed: () {
         //TODO: Validate
