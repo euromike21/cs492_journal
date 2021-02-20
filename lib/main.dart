@@ -41,11 +41,11 @@ class App extends StatelessWidget {
       theme: ThemeData.light(),
       //if list length is > 0 then load welcomroute
 
-      //routes: welcomeRoute,
+      routes: welcomeRoute,
 
       //else load journalentries route
 
-      routes: listScaffoldRoute,
+      //routes: listScaffoldRoute,
     );
 
     //home: JournalScaffold());

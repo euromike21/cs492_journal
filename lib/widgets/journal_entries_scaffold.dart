@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:journal/models/journal_entry.dart';
+//import 'package:flutter/services.dart';
+//import 'package:journal/models/journal.dart';
+import 'package:journal/screens/entry_details.dart';
 import 'package:journal/screens/journal_entries.dart';
-import 'package:journal/widgets/journal_entry_form.dart';
-import 'package:journal/screens/welcome.dart';
+//import 'package:journal/widgets/journal_entry_form.dart';
+//import 'package:journal/screens/welcome.dart';
 import 'package:journal/widgets/journal_scaffold.dart';
+import 'package:journal/screens/welcome.dart';
+import 'package:journal/screens/journal_entries.dart';
+import 'package:journal/models/journal.dart';
+import 'package:journal/db/mock_data.dart';
+
+Widget chooseStart() {
+  bool emptyBool = Journal(mockEntryList).isListEmpty();
+
+  if (emptyBool) {
+    print('Empty');
+    return Welcome();
+  } else {
+    return JournalEntriesScaffold();
+  }
+}
 
 class JournalEntriesScaffold extends StatelessWidget {
   static const routeName = '/';
@@ -47,17 +63,13 @@ class VerticalLayout extends StatelessWidget {
 }
 
 class HorizontalLayout extends StatelessWidget {
-  //String sampleTitle = 'Drank two Kombuchas';
-  //String sampleDesc =
-  //    ' Major disruptions to the Texas power grid left more than four million households without power this week, but by Thursday evening, only about 347,000 lacked electricity. Much of the statewide concern had turned to water woes.More than 800 public water systems serving 162 of the state’s 254 counties had been disrupted as of Thursday, affecting 13.1 million people, according to a spokeswoman for the Texas Commission on Environmental Quality.In Harris County, which includes Houston, the nation’s fourth-largest city, more than one million people have been affected by local water systems that have either issued notices to boil water so it is safe to drink or that cannot deliver water at all, said Brian Murray, a spokesman for the county emergency management agency.';
-
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       Expanded(child: Container(child: JournalEntries())),
       Expanded(
           child: Container(
-        child: JournalEntry(),
+        child: EntryDetails(),
       ))
     ]);
   }

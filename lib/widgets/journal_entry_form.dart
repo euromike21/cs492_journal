@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:journal/widgets/dropdown_rating_form_field.dart';
 import 'package:journal/screens/journal_entries.dart';
 import 'package:journal/widgets/journal_entries_scaffold.dart';
+import 'package:journal/models/journal_entry.dart';
 
-class JournalEntryFields {
+class JournalEntryDTO {
   String title;
   String body;
   DateTime dateTime;
@@ -15,38 +16,13 @@ class JournalEntryFields {
   }
 }
 
-class JournalEntryDB {
-  int id;
-  String title;
-  String body;
-  int rating;
-  DateTime date;
-
-  JournalEntryDB({
-    this.id,
-    this.title = '',
-    this.body = '',
-    this.rating = 0,
-    this.date,
-  });
-
-  //genid method to genererate unique id
-  //dateTime
-
-  void dateGen() {
-    //var now = new DateTime.now();
-    //print('$now');
-    print(new DateFormat.MMMMEEEEd().format(new DateTime.now()));
-  }
-}
-
 // ignore: must_be_immutable
 class JournalEntryForm extends StatelessWidget {
   final myController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  final journalEntryFields = JournalEntryFields();
-  var journalEntry = JournalEntryDB();
+  final journalEntryFields = JournalEntryDTO();
+  var journalEntry = JournalEntry();
 
   static final EntriesRoute = {
     JournalEntries.routeName: (context) => JournalEntries(),
@@ -114,8 +90,7 @@ class JournalEntryForm extends StatelessWidget {
                   },
                   child: Text('Cancel'),
                 ),
-                entriesButton(
-                    context, formKey, journalEntryFields, journalEntry),
+                saveButton(context, formKey, journalEntryFields, journalEntry),
               ],
             ),
           ],
@@ -125,11 +100,13 @@ class JournalEntryForm extends StatelessWidget {
   }
 }
 
-Widget entriesButton(BuildContext context, GlobalKey<FormState> formKey,
-    JournalEntryFields journalEntryFields, JournalEntryDB journalEntry) {
+Widget saveButton(BuildContext context, GlobalKey<FormState> formKey,
+    JournalEntryDTO journalEntryFields, JournalEntry journalEntry) {
   return RaisedButton(
       onPressed: () {
         //TODO: Validate
+
+        // if (formKey.currentState.validate()()) {
         formKey.currentState.save();
         print(journalEntryFields.title);
         print(journalEntryFields.body);
@@ -140,7 +117,8 @@ Widget entriesButton(BuildContext context, GlobalKey<FormState> formKey,
           context,
           MaterialPageRoute(builder: (context) => JournalEntriesScaffold()),
         );
+        //   }
       },
       child: Text(
-          'Save Entry')); // This trailing comma makes auto-formatting nicer for build methods.
+          'Save')); // This trailing comma makes auto-formatting nicer for build methods.
 }
